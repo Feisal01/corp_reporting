@@ -2,7 +2,7 @@ name: run corporate report
 
 on:
   schedule:
-    - cron: '*/2 * * * *' # everyday
+    - cron: '0 0 * * *' # everyday
 
 jobs:
   build:
