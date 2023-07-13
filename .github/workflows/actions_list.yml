@@ -32,5 +32,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add -A
           git commit -a -m "report update" --allow-empty
-          git push
+          git push -f
        
