@@ -31,6 +31,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -a -m "updated logs" --allow-empty
+          git commit -a -m "report update" --allow-empty
           git push
        
