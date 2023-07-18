@@ -149,7 +149,7 @@ class corporate :
         API_enable = fiscal_openess_score.query('any_datastore_active == True')
         eligible_API = Non_geo.query('collection != "federated"')
         data = self.get_fy_download()
-        corporate_metrics =[date.today().strftime('%Y-%m-%d'),total,Non_geo.shape[0] ,round (100*Non_geo_good.shape[0]/Non_geo.shape[0], 2), API_enable.shape[0],
+        corporate_metrics =[date.today().strftime('%Y-%m-%d'),start_date, end_date,total,Non_geo.shape[0] ,round (100*Non_geo_good.shape[0]/Non_geo.shape[0], 2), API_enable.shape[0],
                             round (100*API_enable.shape[0]/eligible_API.shape[0], 2) ,data['downloads'], data['visits']  ] 
         return corporate_metrics
     
