@@ -93,7 +93,7 @@ class corporate :
         data = defaultdict()
         today = date.today()
         try:
-            url ="https://open.canada.ca/static/openDataPortal.siteAnalytics.totalMonthlyUsage.bilingual.csv"
+            url ="https://open.canada.ca/data/dataset/2916fad5-ebcc-4c86-b0f3-4f619b29f412/resource/02a92b0f-b26d-4fbd-9601-d27651703715/download/opendataportal.siteanalytics.totalmonthlyusage.bilingual.csv"
             r = requests.get(url, stream=True).content
             df_dow = pd.read_csv(io.StringIO(r.decode("UTF-8")))
             df_dow.rename(columns={'year / année': "year", 'month / mois':"month",'visits / visites':"visits", 
