@@ -144,6 +144,7 @@ class corporate :
         fiscal_op = merged_df[full_data_col]
         
         fiscal_openess_score = fiscal_op.rename(columns = {"Openness Rating | Cote d'ouverture": "Openness_Rating"})
+        fiscal_openess_score.Openness_Rating = fiscal_openess_score.Openness_Rating.astype(int)
         Non_geo = fiscal_openess_score.query('collection != "fgp" & collection !="geogratis"')
         Non_geo_good = Non_geo.query('Openness_Rating >=3')
         API_enable = fiscal_openess_score.query('any_datastore_active == True')
