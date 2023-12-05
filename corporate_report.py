@@ -103,9 +103,7 @@ class Corporate:
             url = "https://open.canada.ca/data/dataset/2916fad5-ebcc-4c86-b0f3-4f619b29f412/resource/02a92b0f-b26d-4fbd-9601-d27651703715/download/opendataportal.siteanalytics.totalmonthlyusage.bilingual.csv"
             r = requests.get(url, stream=True).content
             df_dow = pd.read_csv(io.StringIO(r.decode("UTF-8")))
-            #year_annee	month_mois	visits_visites	downloads_telechargements
-            # df_dow.rename(columns={'year / année': "year", 'month / mois': "month", 'visits / visites': "visits",
-            #                        'downloads / téléchargements': "downloads"}, inplace=True)
+            
             if today.month < 4:
                 start_year = today.year - 1
             else:
@@ -151,13 +149,9 @@ class Corporate:
         full_data_col = ['organization', 'type', 'package id', 'Title English | Titre en francais', "Openness Rating | Cote d'ouverture",
                          'metadata_created', 'number of ressources', 'any_datastore_active', 'collection']
         fiscal_op = merged_df[full_data_col]
-
-        fiscal_openess_score = fiscal_op.rename(
-            columns={"Openness Rating | Cote d'ouverture": "Openness_Rating"})
-        fiscal_openess_score.Openness_Rating = fiscal_openess_score.Openness_Rating.astype(
-            int)
-        Non_geo = fiscal_openess_score.query(
-            'collection != "fgp" & collection !="geogratis"')
+        
+        fiscal_openess_score = fiscal_op.rename(columns = {"Openness Rating | Cote d'ouverture": "Openness_Rating"})
+        Non_geo = fiscal_openess_score.query('collection != "fgp" & collection !="geogratis"')
         Non_geo_good = Non_geo.query('Openness_Rating >=3')
         API_enable = fiscal_openess_score.query('any_datastore_active == True')
         eligible_API = Non_geo.query('collection != "federated"')
